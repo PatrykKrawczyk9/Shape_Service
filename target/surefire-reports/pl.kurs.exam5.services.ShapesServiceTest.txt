@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: pl.kurs.exam5.services.ShapesServiceTest
--------------------------------------------------------------------------------
-Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.781 s -- in pl.kurs.exam5.services.ShapesServiceTest
