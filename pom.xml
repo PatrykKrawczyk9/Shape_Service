@@ -130,7 +130,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>pl.kurs.exam5.test.Main</mainClass>
+                            <mainClass>pl.kurs.exam5.zdalemtest.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
