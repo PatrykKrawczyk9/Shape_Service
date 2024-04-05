@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: pl.kurs.exam5.services.ShapeFactoryTest
+-------------------------------------------------------------------------------
+Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.618 s -- in pl.kurs.exam5.services.ShapeFactoryTest
