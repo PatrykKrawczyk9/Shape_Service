@@ -39,7 +39,11 @@ public class ShapesService {
                 .orElseThrow(() -> new ShapeNotFoundException("Nie znaleziono żadnego kształtu w przekazanej liście"));
     }
 
-    public void exportToJson(List<Shape> shapes, String path) throws InvalidDataException {
+    public void exportToJson(List<Shape> shapes, String path) throws InvalidDataException, ShapeNotFoundException {
+        if (shapes.isEmpty()) {
+            throw new ShapeNotFoundException("Lista jest pusta");
+        }
+
         File file = new File(path);
 
         try {

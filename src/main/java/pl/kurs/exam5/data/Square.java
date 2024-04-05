@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
+@JsonTypeName("square")
 public class Square implements Shape {
     private final double side;
 
@@ -34,6 +36,19 @@ public class Square implements Shape {
         return "Square{" +
                 "side=" + side +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Square square = (Square) o;
+        return Double.compare(square.side, side) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(side);
     }
 
     public static class Factory {

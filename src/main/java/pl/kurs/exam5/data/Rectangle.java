@@ -3,10 +3,13 @@ package pl.kurs.exam5.data;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
+@JsonTypeName("rectangle")
 public class Rectangle implements Shape {
     private final double length;
     private final double width;
@@ -43,6 +46,19 @@ public class Rectangle implements Shape {
                 "length=" + length +
                 ", width=" + width +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rectangle rectangle = (Rectangle) o;
+        return Double.compare(rectangle.length, length) == 0 && Double.compare(rectangle.width, width) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(length, width);
     }
 
     public static class Factory {
