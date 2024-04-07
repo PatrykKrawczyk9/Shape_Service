@@ -18,7 +18,6 @@ public enum ObjectMapperHolder {
     private static ObjectMapper create() {
         ObjectMapper mapper = new ObjectMapper();
 
-
         return mapper;
     }
 }

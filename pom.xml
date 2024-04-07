@@ -60,7 +60,7 @@
                                 <exclude>**/*pl/kurs/exam5/data/*</exclude>
                                 <exclude>**/*pl/kurs/exam5/exceptions/*</exclude>
                                 <exclude>**/*pl/kurs/exam5/utils/*</exclude>
-                                <exclude>**/*pl/kurs/exam5/test/*</exclude>
+                                <exclude>**/*pl/kurs/exam5/zdalemtest/*</exclude>
                             </excludes>
                         </configuration>
                     </execution>
@@ -74,7 +74,7 @@
                                 <exclude>**/*pl/kurs/exam5/data/*</exclude>
                                 <exclude>**/*pl/kurs/exam5/exceptions/*</exclude>
                                 <exclude>**/*pl/kurs/exam5/utils/*</exclude>
-                                <exclude>**/*pl/kurs/exam5/test/*</exclude>
+                                <exclude>**/*pl/kurs/exam5/zdalemtest/*</exclude>
                             </excludes>
                             <rules>
                                 <rule>

@@ -3,6 +3,7 @@ package pl.kurs.exam5.services;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.api.Assertions;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Before;
 import org.junit.Test;
 import pl.kurs.exam5.data.Circle;
@@ -98,17 +99,24 @@ public class ShapesServiceTest {
     }
 
     @Test
-    public void exportToJson_ShouldCorrectlySerializeShapesToJson() throws Exception {
+    public void exportToJson_ShouldCorrectlySerializeShapesToJson() throws InvalidDataException, ShapeNotFoundException, IOException {
         //given
         String path = "test_shapes.json";
+        SoftAssertions sa = new SoftAssertions();
 
         //when
         service.exportToJson(shapes, path);
 
         //then
-        List<Shape> deserializedShapes = mapper.readValue(new File(path), new TypeReference<List<Shape>>() {
-        });
-        Assertions.assertThat(deserializedShapes).containsExactlyElementsOf(shapes);
+        File testFile = new File(path);
+        sa.assertThat(testFile).exists();
+
+        if(testFile.exists()) {
+            List<Shape> deserializedShapes = mapper.readValue(new File(path), new TypeReference<List<Shape>>() {});
+            sa.assertThat(deserializedShapes).containsExactlyElementsOf(shapes);
+        }
+
+        sa.assertAll();
         Files.delete(Path.of(path));
     }
 
@@ -131,11 +139,11 @@ public class ShapesServiceTest {
         service.exportToJson(shapes, invalidPath);
     }
 
-
     @Test
-    public void importFromJson_ShouldReturnListOfShapes_WhenValidJsonProvided() throws InvalidDataException, IOException {
+    public void importFromJson_ShouldReturnListOfShapes_WhenValidJsonProvided() throws InvalidDataException, IOException, ShapeNotFoundException {
         //given
         String path = "test_shapes_to_import.json";
+        service.exportToJson(shapes, path);
 
         //when
         List<Shape> result = service.importFromJson(path);
@@ -143,6 +151,9 @@ public class ShapesServiceTest {
 
         //then
         Assertions.assertThat(result).containsExactlyElementsOf(expectedShapes);
+
+        File file = new File(path);
+        file.delete();
     }
 
     @Test(expected = InvalidDataException.class)
